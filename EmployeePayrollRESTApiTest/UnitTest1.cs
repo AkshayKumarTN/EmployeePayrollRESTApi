@@ -69,5 +69,20 @@ namespace EmployeePayrollRESTApiTest
             Assert.AreEqual(9, dataResponse.Count);
 
         }
+
+        [TestMethod]
+        public void OnCallingPutAPI_UpdateEmployeeDetails()
+        {
+            EmployeeWebService service = new EmployeeWebService();
+            // Employee object is created.............
+            Employee employee = new Employee();
+            // Adding Values in the Object...................
+            employee.name = "John";
+            employee.salary = 110000;
+            IRestResponse response = service.UpdateEmployee(employee);
+            // Convert the jsonobject to employee object............
+            var res = JsonConvert.DeserializeObject<Employee>(response.Content);
+            Assert.AreEqual(System.Net.HttpStatusCode.OK, response.StatusCode);
+        }
     }
 }

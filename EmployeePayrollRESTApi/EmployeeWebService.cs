@@ -47,5 +47,20 @@ namespace EmployeePayrollRESTApi
                 employeeWebService.AddEmployee(employee);
             }
         }
+
+        public IRestResponse UpdateEmployee(Employee employee)
+        {
+            // Creating RestRequest Object with Method.POST...............
+            RestRequest request = new RestRequest("/employees/6", Method.PUT);
+            // Creating JsonObject Object to insert values................
+            JsonObject json = new JsonObject();
+            json.Add("name", employee.name);
+            json.Add("salary", employee.salary);
+            // Adding into JSON file..............
+            request.AddParameter("application/json", json, ParameterType.RequestBody);
+            // Executing request...........
+            IRestResponse response = client.Execute(request);
+            return response;
+        }
     }
 }
