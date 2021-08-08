@@ -6,7 +6,8 @@ namespace EmployeePayrollRESTApi
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(" Employee Payroll REST Api");
+            Console.WriteLine("\n Employee Payroll REST Api");
+            Console.WriteLine("**********************************************************************************");
         }
     }
 }

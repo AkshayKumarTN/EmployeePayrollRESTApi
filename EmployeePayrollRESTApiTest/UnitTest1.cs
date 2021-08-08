@@ -14,6 +14,7 @@ namespace EmployeePayrollRESTApiTest
         {
             EmployeeWebService service = new EmployeeWebService();
             IRestResponse response = service.GetEmployeeList();
+            // HttpStatusCode.OK = 200................
             Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
             List<Employee> dataResponse = JsonConvert.DeserializeObject<List<Employee>>(response.Content);
             Assert.AreEqual(5, dataResponse.Count);
