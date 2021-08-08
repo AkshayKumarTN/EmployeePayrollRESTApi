@@ -62,5 +62,14 @@ namespace EmployeePayrollRESTApi
             IRestResponse response = client.Execute(request);
             return response;
         }
+        public IRestResponse DeleteEmployee()
+        {
+            // Creating RestRequest Object with Method.POST...............
+            RestRequest request = new RestRequest("/employees/9", Method.DELETE);
+            // Executing request...........
+            IRestResponse response = client.Execute(request);
+            return response;
+        }
+
     }
 }

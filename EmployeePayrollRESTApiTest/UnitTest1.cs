@@ -84,5 +84,16 @@ namespace EmployeePayrollRESTApiTest
             var res = JsonConvert.DeserializeObject<Employee>(response.Content);
             Assert.AreEqual(System.Net.HttpStatusCode.OK, response.StatusCode);
         }
+
+        [TestMethod]
+        public void OnCallingDeleteAPI_DeleteEmployeeDetails()
+        {
+            EmployeeWebService service = new EmployeeWebService();
+            IRestResponse response1 = service.DeleteEmployee();
+            IRestResponse response = service.GetEmployeeList();
+            List<Employee> result = JsonConvert.DeserializeObject<List<Employee>>(response.Content);
+            Assert.AreEqual(8, result.Count);
+            Assert.AreEqual(System.Net.HttpStatusCode.OK, response.StatusCode);
+        }
     }
 }
