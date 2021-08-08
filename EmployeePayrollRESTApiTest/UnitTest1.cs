@@ -38,5 +38,34 @@ namespace EmployeePayrollRESTApiTest
             Assert.AreEqual("John", res.name);
             Assert.AreEqual(System.Net.HttpStatusCode.Created, response.StatusCode);
         }
+
+        [TestMethod]
+        public void OnCallingPostAPI_Adding_MultipleData()
+        {
+            EmployeeWebService service = new EmployeeWebService();
+
+            List<Employee> employeeList = new List<Employee>();
+            // Employee object is created.............
+            Employee employee = new Employee();
+            // Adding Values in the Object...................
+            employee.name = "Watson";
+            employee.salary = 88000;
+            employeeList.Add(employee);
+            employee.name = "Wilson";
+            employee.salary = 66000;
+            employeeList.Add(employee);
+            employee.name = "Phlip";
+            employee.salary = 79000;
+            employeeList.Add(employee);
+
+            service.AddMultipleEmployee(employeeList);
+            IRestResponse response = service.GetEmployeeList();
+            // HttpStatusCode.OK = 200................
+            Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
+            // Deserialize JSON Object ..............
+            List<Employee> dataResponse = JsonConvert.DeserializeObject<List<Employee>>(response.Content);
+            Assert.AreEqual(9, dataResponse.Count);
+
+        }
     }
 }

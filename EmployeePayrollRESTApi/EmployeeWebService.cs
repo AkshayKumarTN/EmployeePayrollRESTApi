@@ -37,5 +37,21 @@ namespace EmployeePayrollRESTApi
             IRestResponse response = client.Execute(request);
             return response;
         }
+        public void AddMultipleEmployee(List<Employee> employeeList)
+        {
+            // Creating RestRequest Object with Method.POST...............
+            RestRequest request = new RestRequest("/employees", Method.POST);
+            foreach (Employee employee in employeeList)
+            {
+                // Creating JsonObject Object to insert values................
+                JsonObject json = new JsonObject();
+                json.Add("name", employee.name);
+                json.Add("salary", employee.salary);
+                // Adding into JSON file..............
+                request.AddParameter("application/json", json, ParameterType.RequestBody);
+                // Executing request...........
+                IRestResponse response = client.Execute(request);
+            }
+        }
     }
 }

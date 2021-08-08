@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EmployeePayrollRESTApi
 {
@@ -11,11 +12,20 @@ namespace EmployeePayrollRESTApi
 
             EmployeeWebService employeeWebService = new EmployeeWebService();
 
-            Employee employee = new Employee();
-            employee.name = "John";
-            employee.salary = 90000;
+            List<Employee> employeeList = new List<Employee>();
 
-            employeeWebService.AddEmployee(employee);
+            Employee employee = new Employee();
+            employee.name = "Watson";
+            employee.salary = 88000;
+            employeeList.Add(employee);
+            employee.name = "Wilson";
+            employee.salary = 66000;
+            employeeList.Add(employee);
+            employee.name = "Phlip";
+            employee.salary = 79000;
+            employeeList.Add(employee);
+
+            employeeWebService.AddMultipleEmployee(employeeList);
         }
     }
 }
